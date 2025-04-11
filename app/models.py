@@ -1,12 +1,12 @@
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
-import os
+from os.path import join, abspath, dirname, exists 
 
 # Define o caminho absoluto para o diretório do modelo
-modelo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "./modelo_sentimentos/"))
+modelo_path = abspath(join(dirname(__file__), "./modelo_sentimentos/"))
 
 # Verifique se o arquivo pytorch_model.bin ou model.safetensors está presente no diretório
-if not os.path.exists(os.path.join(modelo_path, "pytorch_model.bin")) and not os.path.exists(os.path.join(modelo_path, "model.safetensors")):
+if not exists(join(modelo_path, "pytorch_model.bin")) and not exists(join(modelo_path, "model.safetensors")):
     raise FileNotFoundError(f"Arquivo 'pytorch_model.bin' ou 'model.safetensors' não encontrado no diretório {modelo_path}")
 
 modelo = BertForSequenceClassification.from_pretrained(modelo_path)
@@ -24,32 +24,32 @@ def analise_sentimento(text: str):
     # Obter a classe com maior probabilidade e retornar a string para o usuário ao invés do label
     sentimento_classe = torch.argmax(logits, dim=1).item()
     sentiments_labels={
-        0: "Satisfeito",  
-        1: "Agradecido", 
-        2: "Confiante",  
-        3: "Aliviado", 
-        4: "Compreendido", 
-        5: "Encantado",  
-        6: "Feliz",
-        7: "Calmo",  
-        8: "Frustrado", 
-        9: "Irritado" , 
-        10: "Confuso", 
-        11: "Desesperado", 
-        12: "Desapontado", 
-        13: "Indignado", 
-        14: "Desconfortável", 
-        15: "Cético",
-        16: "Compreensivo",
-        17: "Paciente", 
-        18: "Atencioso", 
-        19: "Positivo",
-        20: "Solucionador",
-        21: "Motivado",
-        22: "Organizado", 
-        23: "Desmotivado", 
-        24: "Cansado",
-        25: "Indiferente",
-        26: "Sobrecarregado"  
+        0: "Admiracao",  
+        1: "Diversao", 
+        2: "Raiva",  
+        3: "Aborrecimento", 
+        4: "Aprovacao", 
+        5: "Cuidadoso",  
+        6: "Confusao",
+        7: "Curiosidade",  
+        8: "Desejo", 
+        9: "Desapontamento" , 
+        10: "Desaprovacao", 
+        11: "Nojo", 
+        12: "Embaraco", 
+        13: "Exitacao", 
+        14: "Medo", 
+        15: "Gratidao",
+        16: "Pesar",
+        17: "Alegria", 
+        18: "Amoor", 
+        19: "Nervosismo",
+        20: "Otimismo",
+        21: "Orgulho",
+        22: "Realizacao", 
+        23: "Alivio", 
+        24: "Remorso",
+        25: "Tristeza",
+        26: "Surpresa"  
     }
     return sentiments_labels.get(sentimento_classe, "Desconhecido")
