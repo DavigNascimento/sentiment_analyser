@@ -31,12 +31,15 @@ python -m venv env
 ```
 pip install -r requirements.txt
 ```
-6. Inicie o servidor
+6. Baixe o modelo.
+- Baixe a [pasta no Drive](https://drive.google.com/drive/folders/1U34vGuRdZ8TiBAKsq1PsN2BLRoQExIB_?usp=drive_link) e mova-a para o diretório raiz sob o nome de "modelo_sentimentos/".
+
+7. Inicie o servidor
 ```
 uvicorn app.main:app --reload
 ```
 
-7. Acesse a documentação interativa da API:
+8. Acesse a documentação interativa da API:
 
 - Abra o navegador e vá para: http://127.0.0.1:8000/docs
 
