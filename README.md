@@ -13,7 +13,7 @@ Está é uma API desenvolvida com FastAPI para realizar análise de sentimentos 
 
 1. Clone este repostiório
 ```
-git clone https://github.com/Pedronovaes1/api_sentiment_analyse.git
+git clone https://github.com/DaviGNascimento/sentiment_analyser.git
 cd api_sentiment_analyse
 ```
 
@@ -25,16 +25,6 @@ python -m venv env
 3. Ativie o ambiente virtual 
 ```
 .\env\Scripts\activate
-```
-
-4. Coloque os documentos do modelo de IA na pasta modelo_sentimentos, que deve conter os seguintes documentos:
-
-```
-config.json
-model.safetensors
-special_tokens_map.json
-tokenizer_config.json
-vocab.txt
 ```
 
 5. Instale as dependências 
@@ -116,7 +106,3 @@ api_sentiment_analyse/
 ├── Dockerfile
 └── README.md
 ```
-
-## Observações 
-
-- Certifique-se de que o modelo de sentimentos está no diretório modelo_sentimentos e contém os arquivos necessários, como pytorch_model.bin e config.json.
